@@ -9,15 +9,24 @@ import {
   RotateCcw,
 } from "lucide-react";
 
-const COLORS = ["#000000", "#2563eb", "#16a34a", "#dc2626", "#ca8a04"];
+const COLORS = [
+  "#ffffff",
+  "#000000",
+  "#2563eb",
+  "#16a34a",
+  "#dc2626",
+  "#ca8a04",
+];
+
 
 const FONT_SIZES = [
   { label: "1", value: "2" },
-  { label: "2", value: "3" },
-  { label: "3", value: "4" },
-  { label: "4", value: "5" },
-  { label: "5", value: "6" },
+  { label: "2", value: "2" },
+  { label: "3", value: "3" }, // ← デフォルト
+  { label: "4", value: "4" },
+  { label: "5", value: "5" },
 ];
+
 
 export default function App() {
   const [memos, setMemos] = useState([]);
@@ -77,27 +86,29 @@ export default function App() {
         <div className="flex items-center gap-6 overflow-x-auto">
           {memos.map((m, index) => (
             <div
-              key={m.id}
-              onClick={() => setActiveId(m.id)}
-              className={`flex items-center gap-3 px-4 py-2 rounded-lg cursor-pointer border-2 ${
-                m.id === activeId
-                  ? "bg-white border-blue-500 font-bold"
-                  : "bg-zinc-200 border-transparent"
-              }`}
-            >
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setMemos(memos.filter((x) => x.id !== m.id));
-                }}
-                className="hover:text-red-500"
-              >
-                <X size={20} />
-              </button>
-              <span className="whitespace-nowrap">
-                メモ {index + 1}
-              </span>
-            </div>
+  key={m.id}
+  onClick={() => setActiveId(m.id)}
+  className={`flex items-center gap-3 px-4 py-2 rounded-lg cursor-pointer border-2 ${
+    m.id === activeId
+      ? "bg-white border-blue-500 font-bold"
+      : "bg-zinc-200 border-transparent"
+  }`}
+>
+  <span className="whitespace-nowrap">
+    メモ {index + 1}
+  </span>
+
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      setMemos(memos.filter((x) => x.id !== m.id));
+    }}
+    className="hover:text-red-500"
+  >
+    <X size={20} />
+  </button>
+</div>
+
           ))}
 
           <button
