@@ -6,37 +6,47 @@ export default function App() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center gap-6 p-8"
+      className="min-h-screen p-8"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      <h1 className="text-2xl font-bold">📝 メモアプリ</h1>
+      <h1 className="text-2xl font-bold text-center mb-8">📝 メモアプリ</h1>
 
-      {/* 文字色 */}
-      <div className="border rounded-lg p-4 w-64">
-        <p className="font-semibold mb-2">文字色</p>
-        <input
-          type="color"
-          value={textColor}
-          onChange={(e) => setTextColor(e.target.value)}
-          className="w-full h-10"
-        />
+      {/* カラーパネル */}
+      <div className="flex justify-center gap-6 mb-8">
+        {/* 文字色 */}
+        <div className="border-2 border-blue-500 rounded-lg p-4 w-48">
+          <p className="font-semibold text-center mb-2 text-blue-600">
+            ✏️ 文字色
+          </p>
+          <input
+            type="color"
+            value={textColor}
+            onChange={(e) => setTextColor(e.target.value)}
+            className="w-full h-10 cursor-pointer"
+          />
+        </div>
+
+        {/* 背景色 */}
+        <div className="border-2 border-green-500 rounded-lg p-4 w-48">
+          <p className="font-semibold text-center mb-2 text-green-600">
+            🖼 背景色
+          </p>
+          <input
+            type="color"
+            value={bgColor}
+            onChange={(e) => setBgColor(e.target.value)}
+            className="w-full h-10 cursor-pointer"
+          />
+        </div>
       </div>
 
-      {/* 背景色 */}
-      <div className="border rounded-lg p-4 w-64">
-        <p className="font-semibold mb-2">背景色</p>
-        <input
-          type="color"
-          value={bgColor}
-          onChange={(e) => setBgColor(e.target.value)}
-          className="w-full h-10"
+      {/* メモ欄 */}
+      <div className="flex justify-center">
+        <textarea
+          className="w-96 h-48 border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="ここにメモを書く"
         />
       </div>
-
-      <textarea
-        className="w-80 h-40 border rounded p-2"
-        placeholder="ここにメモを書く"
-      />
     </div>
   );
 }
